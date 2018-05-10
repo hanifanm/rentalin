@@ -1,6 +1,48 @@
 <div class="container-fluid">
-  <div class="btn-group">
-    <button type="button" class="btn btn-primary">Car</button>
-    <button type="button" class="btn btn-primary">Guide</button>
+
+  <div class="btn-group pull-left">
+    <button type="button" class="btn btn-primary" (click)="changeServiceType(1)">Car</button>
+    <button type="button" class="btn btn-primary" (click)="changeServiceType(2)">Guide</button>
   </div>
+
+  <div class="pull-left">&nbsp;&nbsp;</div>
+
+  <div class="dropdown inline pull-left">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+      {{selectedCity.name}}
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li *ngFor="let city of cities" (click)="changeCity(city)" class="city-options">
+        <a>{{city.name}}</a>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+
+<div class="content">
+  <h1 *ngIf="serviceType===1">Cars</h1>
+  <h1 *ngIf="serviceType===2">Guide</h1>
+
+  <div class="row" *ngIf="serviceType===1">
+    <div class="col-md-4 col-sm-6 col-xs-6" *ngFor="let car of filteredCars()">
+      <div class="panel panel-default car-card">
+
+        <div class="panel-heading">{{car.carType}}</div>
+        <div class="panel-body">
+          <div class="car-image-box">
+            <img [src]="car.image" class="car-image" />
+          </div>
+          <button type="button" class="btn btn-info btn-view">
+            <span class="glyphicon glyphicon-eye-open"></span>
+          </button>
+          <button type="button" class="btn btn-success btn-rent pull-right">
+            Rent - IDR {{car.price}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

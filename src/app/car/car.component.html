@@ -7,6 +7,7 @@
         <th>Tipe</th>
         <th>Harga</th>
         <th>Kapasitas</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -17,6 +18,14 @@
         <td>{{car.carType}}</td>
         <td>{{car.price}}</td>
         <td>{{car.seat}}</td>
+        <td>
+          <button type="button" class="btn btn-info btn-sm" (click)="onView(car)">
+            <span class="glyphicon glyphicon-eye-open"></span> 
+          </button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(car)">
+            <span class="glyphicon glyphicon-trash"></span> 
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>

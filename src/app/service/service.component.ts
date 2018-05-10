@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServiceService } from '../model/service.service'
+import { ServiceService, ServiceModel } from '../model/service.service'
 
 @Component({
   selector: 'app-service',
@@ -8,12 +8,20 @@ import { ServiceService } from '../model/service.service'
 })
 export class ServiceComponent implements OnInit {
 
-  services = [];
+  services : ServiceModel[] = [];
 
   constructor(private serviceService : ServiceService) { }
 
   ngOnInit() {
     this.services = this.serviceService.getServices();
+  }
+
+  onView(service : ServiceModel) {
+    console.log(service);
+  }
+
+  onDelete(service : ServiceModel) {
+    console.log(service);
   }
 
 }

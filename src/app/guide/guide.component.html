@@ -7,6 +7,7 @@
         <th>Per Servis</th>
         <th>Per Jam</th>
         <th>Per Hari</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -17,6 +18,14 @@
         <td>{{guide.cps}}</td>
         <td>{{guide.cphr}}</td>
         <td>{{guide.cpd}}</td>
+        <td>
+          <button type="button" class="btn btn-info btn-sm" (click)="onView(guide)">
+            <span class="glyphicon glyphicon-eye-open"></span> 
+          </button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(guide)">
+            <span class="glyphicon glyphicon-trash"></span> 
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>

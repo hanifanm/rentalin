@@ -1,0 +1,25 @@
+.content {
+    padding: 20px;
+}
+
+.city-options {
+    cursor: pointer;
+}
+
+.car-image-box {
+    overflow: hidden;
+    height: 200px;
+}
+
+.car-image {
+    width: 100%;
+    object-fit: cover;
+}
+
+.btn-view {
+    width : 20%;
+}
+
+.btn-rent {
+    width : 75%;
+}

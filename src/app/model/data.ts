@@ -87,7 +87,7 @@ let cars = [
         price : 300000,
         additional : 'Minum',
         seat : 7,
-        image : ''
+        image : 'https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/avanza.jpg?alt=media&token=8c3bf22d-288f-4918-912a-232928993028'
     },
     {
         id : 2,
@@ -95,9 +95,9 @@ let cars = [
         city_id : 2,
         car_type_id : 3,
         price : 300000,
-        additional : 'Minum',
-        seat : 7,
-        image : ''
+        additional : 'Termasuk Supir',
+        seat : 6,
+        image : 'https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/terios.jpg?alt=media&token=a4ccca33-b9c5-4122-9117-530e24413367'
     },
     {
         id : 3,
@@ -107,8 +107,28 @@ let cars = [
         price : 400000,
         additional : 'Antar Jemput',
         seat : 8,
-        image : ''
+        image : 'https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/innova.jpg?alt=media&token=29554091-0680-44be-86f7-7f05f972f566'
     },
+    {
+        id : 4,
+        service_id : 3,
+        city_id : 1,
+        car_type_id : 4,
+        price : 250000,
+        additional : '-',
+        seat : 5,
+        image : 'https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/jazz.jpg?alt=media&token=586ce2dd-3ac1-40be-b01c-4d26483cbd03'
+    },
+    {
+        id : 5,
+        service_id : 3,
+        city_id : 2,
+        car_type_id : 5,
+        price : 300000,
+        additional : '-',
+        seat : 4,
+        image : 'https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/brio.jpg?alt=media&token=c9ef0464-0002-495e-bee8-f9f50bc8a699'
+    }
 ]
 
 let cities = [

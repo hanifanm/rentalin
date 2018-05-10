@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GuideService } from '../model/guide.service'
+import { GuideService, GuideModel } from '../model/guide.service'
 
 @Component({
   selector: 'app-guide',
@@ -8,7 +8,7 @@ import { GuideService } from '../model/guide.service'
 })
 export class GuideComponent implements OnInit {
 
-  guides = [];
+  guides : GuideModel[] = [];
 
   constructor(
     private guideService : GuideService
@@ -16,6 +16,14 @@ export class GuideComponent implements OnInit {
 
   ngOnInit() {
     this.guides = this.guideService.getGuides();
+  }
+
+  onView(guide : GuideModel) {
+    console.log(guide);
+  }
+
+  onDelete(guide : GuideModel) {
+    console.log(guide);
   }
 
 }
