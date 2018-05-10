@@ -1,0 +1,22 @@
+ <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama Servis</th>
+        <th>Kota</th>
+        <th>Per Servis</th>
+        <th>Per Jam</th>
+        <th>Per Hari</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let guide of guides; let i=index">
+        <td>{{i+1}}</td>
+        <td>{{guide.serviceName}}</td>
+        <td>{{guide.cityName}}</td>
+        <td>{{guide.cps}}</td>
+        <td>{{guide.cphr}}</td>
+        <td>{{guide.cpd}}</td>
+      </tr>
+    </tbody>
+  </table>

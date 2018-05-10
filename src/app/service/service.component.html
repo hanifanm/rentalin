@@ -1,0 +1,18 @@
+ <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Vendor</th>
+        <th>Nama Servis</th>
+        <th>Tipe</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let service of services; let i=index">
+        <td>{{i+1}}</td>
+        <td>{{service.vendorName}}</td>
+        <td>{{service.name}}</td>
+        <td>{{service.serviceType}}</td>
+      </tr>
+    </tbody>
+  </table>

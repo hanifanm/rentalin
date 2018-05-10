@@ -1,0 +1,22 @@
+ <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama Servis</th>
+        <th>Kota</th>
+        <th>Tipe</th>
+        <th>Harga</th>
+        <th>Kapasitas</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let car of cars; let i=index">
+        <td>{{i+1}}</td>
+        <td>{{car.serviceName}}</td>
+        <td>{{car.cityName}}</td>
+        <td>{{car.carType}}</td>
+        <td>{{car.price}}</td>
+        <td>{{car.seat}}</td>
+      </tr>
+    </tbody>
+  </table>
