@@ -1,8 +1,5 @@
 <ul class="nav nav-tabs">
-  <li><a href="app/user">User</a></li>
-  <li><a href="app/service">Service</a></li>
-  <li><a href="app/guide">Guide</a></li>
-  <li><a href="app/car">Car</a></li>
+  <li *ngFor="let tab of tabs"><a [routerLink]="tab.path">{{tab.title}}</a></li>
 </ul>
 <div class="content">
   <router-outlet></router-outlet>

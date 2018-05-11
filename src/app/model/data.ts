@@ -3,35 +3,35 @@ let users = [
         id: 1,
         name: 'Super Admin',
         email: 'superadmin@rentalin.com',
-        password: 'asdasd123123',
+        password: 'asdasd',
         level: 1
     },
     {
         id: 2,
         name: 'Vendor1',
         email: 'vendor1@rentalin.com',
-        password: 'asdasd123123',
+        password: 'asdasd',
         level: 2
     },
     {
         id: 3,
         name: 'Vendor2',
         email: 'vendor2@rentalin.com',
-        password: 'asdasd123123',
+        password: 'asdasd',
         level: 2
     },
     {
         id: 4,
         name: 'User1',
         email: 'user@rentalin.com',
-        password: 'asdasd123123',
+        password: 'asdasd',
         level: 3
     },
     {
         id: 5,
         name: 'User2',
         email: 'user@rentalin.com',
-        password: 'asdasd123123',
+        password: 'asdasd',
         level: 3
     }
 ]
@@ -170,23 +170,33 @@ let getUserById = function (id) {
 }
 
 let getServiceById = function (id) {
-    return services.filter(u => u.id === id);
+    return services.filter(s => s.id === id);
+}
+
+let getServiceIdByUserId = function(userId) {
+    let res = [];
+    for(let i=0; i<services.length; i++) {
+        if(services[i].user_id === userId){
+            res.push(services[i].id);
+        }
+    }
+    return res;
 }
 
 let getGuideById = function (id) {
-    return guides.filter(u => u.id === id);
+    return guides.filter(g => g.id === id);
 }
 
 let getCarById = function (id) {
-    return cars.filter(u => u.id === id);
+    return cars.filter(c => c.id === id);
 }
 
 let getCityById = function (id) {
-    return cities.filter(u => u.id === id);
+    return cities.filter(c => c.id === id);
 }
 
 let getCarTypeById = function (id) {
-    return car_type.filter(u => u.id === id);
+    return car_type.filter(ct => ct.id === id);
 }
 
 export {
@@ -195,6 +205,7 @@ export {
 
     services,
     getServiceById,
+    getServiceIdByUserId,
 
     guides,
     getGuideById,

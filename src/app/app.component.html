@@ -1,12 +1,52 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">RENTALIN</a>
+      <a class="navbar-brand">RENTALIN</a>
     </div>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    <ul class="nav navbar-nav">
+      <li><a routerLink="/dashboard">Dashboard</a></li>
+      <li *ngIf="loginService.isLogin"><a [routerLink]="getApplicationPath()">Manage</a></li>
     </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li *ngIf="loginService.isLogin">
+        <a>{{loginService.user.name + ' (' + loginService.role + ')'}}</a>
+      </li>
+      <li *ngIf="!loginService.isLogin">
+        <a (click)="onClickLogin()"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+      </li>
+      <li *ngIf="loginService.isLogin">
+        <a (click)="onClickLogout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+      </li>
+    </ul>
+
   </div>
 </nav>
+
+<div class="overlay" *ngIf="isDialogLogin">
+  <div class="overlay-content">
+    <button type="button" class="close" (click)="onCloseDialog()">&times;</button>
+    <h3>Login</h3>
+    <hr />
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">Email  :</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" placeholder="Enter email" [(ngModel)]="email" name="email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="pwd">Password :</label>
+        <div class="col-sm-10">          
+          <input type="password" class="form-control" placeholder="Enter password" [(ngModel)]="password" name="password">
+        </div>
+      </div>
+      <p class="red">{{error}}</p>
+    </form>
+    <button type="button" class="btn btn-success pull-right" (click)="onLogin()">Login</button>
+    <div class="pull-right">&nbsp;&nbsp;</div>
+    <button type="button" class="btn btn-default pull-right" (click)="onCloseDialog()">Tutup</button>
+  </div>
+</div>
 <router-outlet></router-outlet>
 

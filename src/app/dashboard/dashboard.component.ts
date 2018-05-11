@@ -11,7 +11,7 @@ let cities = data.cities;
 })
 export class DashboardComponent implements OnInit {
 
-  serviceType : Number = 1;
+  serviceType : number = 1;
   cities = cities;
   selectedCity = cities[0];
   cars: CarModel[] = [];
@@ -21,14 +21,15 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.cars = this.carService.getCars();
+    this.carService.fetchAll();
   }
 
   filteredCars() {
-    return this.cars.filter(c => c.city_id === this.selectedCity.id);
+    return this.carService.collections
+    .filter(c => c.city_id === this.selectedCity.id);
   }
 
-  changeServiceType(st : Number) {
+  changeServiceType(st : number) {
     this.serviceType = st;
   }
 

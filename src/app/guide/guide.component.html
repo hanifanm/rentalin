@@ -1,31 +1,150 @@
- <table class="table table-striped">
-    <thead>
+<button type="button" class="btn btn-success" (click)="onCreate()">Create</button>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Nama Servis</th>
+      <th>Kota</th>
+      <th>Per Servis</th>
+      <th>Per Jam</th>
+      <th>Per Hari</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let guide of guideService.collections; let i=index">
+      <td>{{i+1}}</td>
+      <td>{{guide.serviceName}}</td>
+      <td>{{guide.cityName}}</td>
+      <td>{{guide.cps}}</td>
+      <td>{{guide.cphr}}</td>
+      <td>{{guide.cpd}}</td>
+      <td>
+        <button type="button" class="btn btn-info btn-sm" (click)="onView(guide)">
+          <span class="glyphicon glyphicon-eye-open"></span> 
+        </button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(guide)">
+          <span class="glyphicon glyphicon-trash"></span> 
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="overlay" *ngIf="isDialogView">
+  <div class="overlay-content">
+    <button type="button" class="close" (click)="onCloseDialog()">&times;</button>
+    <h3>View Guide</h3>
+    <hr />
+    <table>
       <tr>
-        <th>No</th>
-        <th>Nama Servis</th>
-        <th>Kota</th>
-        <th>Per Servis</th>
-        <th>Per Jam</th>
-        <th>Per Hari</th>
-        <th></th>
+        <td class="list-label">Service Name</td>
+        <td class="list-data">{{guideService.current.serviceName}}</td>
       </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let guide of guides; let i=index">
-        <td>{{i+1}}</td>
-        <td>{{guide.serviceName}}</td>
-        <td>{{guide.cityName}}</td>
-        <td>{{guide.cps}}</td>
-        <td>{{guide.cphr}}</td>
-        <td>{{guide.cpd}}</td>
-        <td>
-          <button type="button" class="btn btn-info btn-sm" (click)="onView(guide)">
-            <span class="glyphicon glyphicon-eye-open"></span> 
-          </button>
-          <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(guide)">
-            <span class="glyphicon glyphicon-trash"></span> 
-          </button>
-        </td>
+      <tr>
+        <td class="list-label">City</td>
+        <td class="list-data">{{guideService.current.cityName}}</td>
       </tr>
-    </tbody>
-  </table>
+      <tr>
+        <td class="list-label">Cost Per Service</td>
+        <td class="list-data">{{guideService.current.cps}}</td>
+      </tr>
+      <tr>
+        <td class="list-label">Cost Per Hour</td>
+        <td class="list-data">{{guideService.current.cphr}}</td>
+      </tr>
+      <tr>
+        <td class="list-label">Cost Per Half Day</td>
+        <td class="list-data">{{guideService.current.cphd}}</td>
+      </tr>
+      <tr>
+        <td class="list-label">Cost Per Day</td>
+        <td class="list-data">{{guideService.current.cpd}}</td>
+      </tr>
+    </table>
+    <button type="button" class="btn btn-info pull-right" (click)="onEdit()">Edit</button>
+    <div class="pull-right">&nbsp;&nbsp;</div>
+    <button type="button" class="btn btn-default pull-right" (click)="onCloseDialog()">Close</button>
+  </div>
+</div>
+
+<div class="overlay" *ngIf="isDialogDelete">
+  <div class="overlay-content">
+    <button type="button" class="close" (click)="onCloseDialog()">&times;</button>
+    <h3>Delete Guide</h3>
+    <hr />
+    <p>Are you sure?</p>
+    <button type="button" class="btn btn-danger pull-right" (click)="onSubmitDelete()">Delete</button>
+    <div class="pull-right">&nbsp;&nbsp;</div>
+    <button type="button" class="btn btn-default pull-right" (click)="onCloseDialog()">Close</button>
+  </div>
+</div>
+
+<div class="overlay" *ngIf="isDialogForm">
+  <div class="overlay-content">
+    <button type="button" class="close" (click)="onCloseDialog()">&times;</button>
+    <h3>Edit Guide</h3>
+    <hr />
+
+    <form class="form-horizontal">
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="service">Service  :</label>
+        <div class="col-sm-10">
+          <select class="form-control" [(ngModel)]="guideService.current.service_id" name="service">
+            <option *ngFor="let service of getFilteredService()" [value]="service.id">{{service.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="city">City  :</label>
+        <div class="col-sm-10">
+          <select class="form-control" [(ngModel)]="guideService.current.city_id" name="service">
+            <option *ngFor="let city of cityService.collections" [value]="city.id">{{city.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="cps">Cost Per Service  :</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" [(ngModel)]="guideService.current.cps" name="cps">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="cphr">Cost Per Hour  :</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" [(ngModel)]="guideService.current.cphr" name="cphr">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="cphd">Cost Per Half Day  :</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" [(ngModel)]="guideService.current.cphd" name="cphd">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="cpd">Cost Per Day  :</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" [(ngModel)]="guideService.current.cpd" name="cpd">
+        </div>
+      </div>
+
+    </form>
+
+    <div class="panel panel-danger" *ngIf="error !== ''">
+      <button type="button" class="close" (click)="onCloseError()">&times;</button>
+      <div class="panel-heading">{{error}}</div>
+    </div>
+
+    <button type="button" class="btn btn-success pull-right" (click)="onSubmitForm()">Submit</button>
+    <div class="pull-right">&nbsp;&nbsp;</div>
+    <button type="button" class="btn btn-default pull-right" (click)="onCloseDialog()">Close</button>
+    
+  </div>
+</div>

@@ -5,6 +5,7 @@ import { UserComponent } from './user/user.component';
 import { ServiceComponent } from './service/service.component';
 import { CarComponent } from './car/car.component';
 import { GuideComponent } from './guide/guide.component';
+import { InteractionComponent } from './interaction/interaction.component';
 
 const appRoutes : Routes = [
     {
@@ -15,6 +16,10 @@ const appRoutes : Routes = [
         path : 'app',
         component : LayoutComponent,
         children : [
+            {
+                path : 'interaction',
+                component : InteractionComponent
+            },
             {
                 path : 'user',
                 component : UserComponent
@@ -32,6 +37,11 @@ const appRoutes : Routes = [
                 component : GuideComponent
             }
         ]
+    },
+    {
+        path : '',
+        redirectTo : 'dashboard',
+        pathMatch : 'full'
     }
     
 ]

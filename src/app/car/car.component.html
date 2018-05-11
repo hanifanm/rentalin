@@ -1,31 +1,161 @@
- <table class="table table-striped">
-    <thead>
+<button type="button" class="btn btn-success" (click)="onCreate()">Create</button>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Service Name</th>
+      <th>City</th>
+      <th>Type</th>
+      <th>Price</th>
+      <th>Capacity</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of carService.collections; let i=index">
+      <td>{{i+1}}</td>
+      <td>{{car.serviceName}}</td>
+      <td>{{car.cityName}}</td>
+      <td>{{car.carType}}</td>
+      <td>{{car.price}}</td>
+      <td>{{car.seat}}</td>
+      <td>
+        <button type="button" class="btn btn-info btn-sm" (click)="onView(car)">
+          <span class="glyphicon glyphicon-eye-open"></span> 
+        </button>
+        <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(car)">
+          <span class="glyphicon glyphicon-trash"></span> 
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="overlay" *ngIf="isDialogView">
+  <div class="overlay-content">
+    <button type="button" class="close" (click)="onCloseDialog()">&times;</button>
+    <h3>View Car</h3>
+    <hr />
+    <img class="list-image" height="200px" [src]="carService.current.image"/>
+    <br />
+    <table>
       <tr>
-        <th>No</th>
-        <th>Nama Servis</th>
-        <th>Kota</th>
-        <th>Tipe</th>
-        <th>Harga</th>
-        <th>Kapasitas</th>
-        <th></th>
+        <td class="list-label">Service Name</td>
+        <td class="list-data">{{carService.current.serviceName}}</td>
       </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let car of cars; let i=index">
-        <td>{{i+1}}</td>
-        <td>{{car.serviceName}}</td>
-        <td>{{car.cityName}}</td>
-        <td>{{car.carType}}</td>
-        <td>{{car.price}}</td>
-        <td>{{car.seat}}</td>
-        <td>
-          <button type="button" class="btn btn-info btn-sm" (click)="onView(car)">
-            <span class="glyphicon glyphicon-eye-open"></span> 
-          </button>
-          <button type="button" class="btn btn-danger btn-sm" (click)="onDelete(car)">
-            <span class="glyphicon glyphicon-trash"></span> 
-          </button>
-        </td>
+      <tr>
+        <td class="list-label">City</td>
+        <td class="list-data">{{carService.current.cityName}}</td>
       </tr>
-    </tbody>
-  </table>
+      <tr>
+        <td class="list-label">Car Type</td>
+        <td class="list-data">{{carService.current.carType}}</td>
+      </tr>
+      <tr>
+        <td class="list-label">Price</td>
+        <td class="list-data">{{carService.current.price}}</td>
+      </tr>
+      <tr>
+        <td class="list-label">Capacity</td>
+        <td class="list-data">{{carService.current.seat}}</td>
+      </tr>
+      <tr>
+        <td class="list-label">Additional Service</td>
+        <td class="list-data">{{carService.current.additional}}</td>
+      </tr>
+    </table>
+    <button type="button" class="btn btn-info pull-right" (click)="onEdit()">Edit</button>
+    <div class="pull-right">&nbsp;&nbsp;</div>
+    <button type="button" class="btn btn-default pull-right" (click)="onCloseDialog()">Close</button>
+  </div>
+</div>
+
+<div class="overlay" *ngIf="isDialogDelete">
+  <div class="overlay-content">
+    <button type="button" class="close" (click)="onCloseDialog()">&times;</button>
+    <h3>Delete Car</h3>
+    <hr />
+    <p>Are you sure?</p>
+    <button type="button" class="btn btn-danger pull-right" (click)="onSubmitDelete()">Delete</button>
+    <div class="pull-right">&nbsp;&nbsp;</div>
+    <button type="button" class="btn btn-default pull-right" (click)="onCloseDialog()">Close</button>
+  </div>
+</div>
+
+<div class="overlay" *ngIf="isDialogForm">
+  <div class="overlay-content">
+    <button type="button" class="close" (click)="onCloseDialog()">&times;</button>
+    <h3>Edit Car</h3>
+    <hr />
+    
+    <form class="form-horizontal">
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="service">Service  :</label>
+        <div class="col-sm-10">
+          <select class="form-control" [(ngModel)]="carService.current.service_id" name="service">
+            <option *ngFor="let service of getFilteredService()" [value]="service.id">{{service.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="city">City  :</label>
+        <div class="col-sm-10">
+          <select class="form-control" [(ngModel)]="carService.current.city_id" name="service">
+            <option *ngFor="let city of cityService.collections" [value]="city.id">{{city.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="car-type">Car Type  :</label>
+        <div class="col-sm-10">
+          <select class="form-control" [(ngModel)]="carService.current.car_type_id" name="car-type">
+            <option *ngFor="let carType of carTypeService.collections" [value]="carType.id">{{carType.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="price">Price  :</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" [(ngModel)]="carService.current.price" name="price">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="additional">Additional Service  :</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="carService.current.additional" name="additional">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="seat">Seat  :</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" [(ngModel)]="carService.current.seat" name="seat">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="image">Image URL  :</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="carService.current.image" name="image">
+        </div>
+      </div>
+
+    </form>
+
+    <div class="panel panel-danger" *ngIf="error !== ''">
+      <button type="button" class="close" (click)="onCloseError()">&times;</button>
+      <div class="panel-heading">{{error}}</div>
+    </div>
+
+    <button type="button" class="btn btn-success pull-right" (click)="onSubmitForm()">Submit</button>
+    <div class="pull-right">&nbsp;&nbsp;</div>
+    <button type="button" class="btn btn-default pull-right" (click)="onCloseDialog()">Close</button>
+    
+  </div>
+</div>

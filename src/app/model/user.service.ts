@@ -4,21 +4,21 @@ import * as data from './data';
 let users = data.users;
 
 export class UserModel {
-  id : Number;
-  name : String;
-  email : String;
-  password : String;
-  level : Number;
+  id : number;
+  name : string;
+  email : string;
+  password : string;
+  level : number;
 
-  constructor(id : Number, name : String, email : String, password : String, level : Number) {
+  constructor(id : number, name : string, email : string, password : string, level : number) {
     this.id = id;
     this.name = name;
-    this.email = name;
+    this.email = email;
     this.password = password;
     this.level = level;
   }
 
-  get role() : String {
+  get role() : string {
     if(this.level === 1) return 'Superadmin';
     else if(this.level === 2) return 'Vendor';
     else return 'User';
@@ -29,17 +29,51 @@ export class UserModel {
 @Injectable()
 export class UserService {
 
-  current : UserModel;
+  collections : UserModel[] = [];
+  current : UserModel = undefined;
 
   constructor() { }
 
-  getUsers() : UserModel[] {
-    let collections : UserModel[] = [];
+  fetch() {
+    this.collections = [];
     for(let i=0; i<users.length; i++) {
       let user = new UserModel(users[i].id, users[i].name, users[i].email, users[i].password, users[i].level);
-      collections.push(user);
+      this.collections.push(user);
     }
-    return collections;
+  }
+
+
+  delete(id : number) {
+    let i = 0;
+    while(i<users.length && users[i].id !== id) i++;
+    users.splice(i, 1);
+  }
+
+  update(id : number, name : string, email : string, password : string, level : number) {
+    let i = 0;
+    while(i<users.length && users[i].id !== id) i++;
+    users[i].name = name;
+    users[i].email = email;
+    users[i].password = password;
+    users[i].level = level;
+  }
+
+  create(id : number, name : string, email : string, password : string, level : number) {
+    
+    let max = 0;
+    for(let i=0; i<users.length; i++) {
+      if(users[i].id > max) max = users[i].id;
+    }
+
+    let newUsers = {
+      id : max + 1,
+      name : name,
+      email : email,
+      password : password,
+      level : level
+    };
+
+    users.push(newUsers);
   }
 
 }
