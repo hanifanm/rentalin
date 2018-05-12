@@ -29,3 +29,21 @@
 a {
     cursor: pointer;
 }
+
+.list-image {
+    display: block;
+    margin: 0 auto;
+}
+
+.list-label {
+    width: 30%;
+    font-weight: bold;
+}
+
+.list-separator {
+    width: 2%;
+}
+
+.list-data {
+    width: 60%;
+}

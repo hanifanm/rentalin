@@ -12,7 +12,7 @@
       {{selectedCity.name}}
     <span class="caret"></span></button>
     <ul class="dropdown-menu">
-      <li *ngFor="let city of cities" (click)="changeCity(city)" class="city-options">
+      <li *ngFor="let city of cityService.collections" (click)="changeCity(city)" class="city-options">
         <a>{{city.name}}</a>
       </li>
     </ul>
@@ -26,7 +26,7 @@
   <h1 *ngIf="serviceType===2">Guide</h1>
 
   <div class="row" *ngIf="serviceType===1">
-    <div class="col-md-4 col-sm-6 col-xs-6" *ngFor="let car of filteredCars()">
+    <div class="col-md-3 col-sm-4 col-xs-6" *ngFor="let car of filteredCars()">
       <div class="panel panel-default car-card">
 
         <div class="panel-heading">{{car.carType}}</div>
@@ -35,15 +35,50 @@
             <img [src]="car.image" class="car-image" />
           </div>
           <br />
-          <button type="button" class="btn btn-info btn-view">
-            <span class="glyphicon glyphicon-eye-open"></span>
-          </button>
-          <button type="button" class="btn btn-success btn-rent pull-right">
-            Rent - IDR {{car.price}}
+          <div class="price-label">
+            <h4>
+              <span class="glyphicon glyphicon-tag"></span> IDR {{car.price | number}}
+            </h4>
+          </div>
+          <button type="button" class="btn btn-success btn-block pull-right">
+            Rent
           </button>
         </div>
       </div>
     </div>
+  </div>
+
+  <div *ngIf="serviceType===2">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Name</th>
+          <th>Service Name</th>
+          <th>City</th>
+          <th>Per Service</th>
+          <th>Per Hour</th>
+          <th>Per Day</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let guide of filteredGuides(); let i=index">
+          <td>{{i+1}}</td>
+          <td>{{guide.name}}</td>
+          <td>{{guide.serviceName}}</td>
+          <td>{{guide.cityName}}</td>
+          <td>{{guide.cps}}</td>
+          <td>{{guide.cphr}}</td>
+            <td>{{guide.cpd}}</td>
+            <td>
+              <button type="button" class="btn btn-success btn-sm">
+                Rent
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
   </div>
 
 </div>

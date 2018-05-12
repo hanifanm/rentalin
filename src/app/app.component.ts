@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from './model/login.service';
+import { ROLE_SUPERADMIN, ROLE_VENDOR, ROLE_USER } from './model/const'
 
 @Component({
   selector: 'app-root',
@@ -54,8 +55,21 @@ export class AppComponent implements OnInit {
     }
   }
 
-  getApplicationPath() {
-    return '/app/user';
+  getApplicationPath() : string {
+    switch(this.loginService.user.level) {
+      case ROLE_SUPERADMIN : {
+        return '/app/user';
+      }
+      case ROLE_VENDOR : {
+        return '/app/interaction';
+      }
+      case ROLE_USER : {
+        return '/app/interaction';
+      }
+      default : {
+        return '/dashboard';
+      }
+    }
   }
 
 }

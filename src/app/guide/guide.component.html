@@ -4,17 +4,19 @@
   <thead>
     <tr>
       <th>No</th>
-      <th>Nama Servis</th>
-      <th>Kota</th>
-      <th>Per Servis</th>
-      <th>Per Jam</th>
-      <th>Per Hari</th>
+      <th>Name</th>
+      <th>Service Name</th>
+      <th>City</th>
+      <th>Per Service</th>
+      <th>Per Hour</th>
+      <th>Per Day</th>
       <th></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let guide of guideService.collections; let i=index">
       <td>{{i+1}}</td>
+      <td>{{guide.name}}</td>
       <td>{{guide.serviceName}}</td>
       <td>{{guide.cityName}}</td>
       <td>{{guide.cps}}</td>
@@ -39,27 +41,38 @@
     <hr />
     <table>
       <tr>
+        <td class="list-label">Name</td>
+        <td class="list-separator">:</td>
+        <td class="list-data">{{guideService.current.name}}</td>
+      </tr>
+      <tr>
         <td class="list-label">Service Name</td>
+        <td class="list-separator">:</td>
         <td class="list-data">{{guideService.current.serviceName}}</td>
       </tr>
       <tr>
         <td class="list-label">City</td>
+        <td class="list-separator">:</td>
         <td class="list-data">{{guideService.current.cityName}}</td>
       </tr>
       <tr>
         <td class="list-label">Cost Per Service</td>
+        <td class="list-separator">:</td>
         <td class="list-data">{{guideService.current.cps}}</td>
       </tr>
       <tr>
         <td class="list-label">Cost Per Hour</td>
+        <td class="list-separator">:</td>
         <td class="list-data">{{guideService.current.cphr}}</td>
       </tr>
       <tr>
         <td class="list-label">Cost Per Half Day</td>
+        <td class="list-separator">:</td>
         <td class="list-data">{{guideService.current.cphd}}</td>
       </tr>
       <tr>
         <td class="list-label">Cost Per Day</td>
+        <td class="list-separator">:</td>
         <td class="list-data">{{guideService.current.cpd}}</td>
       </tr>
     </table>
@@ -90,6 +103,13 @@
     <form class="form-horizontal">
 
       <div class="form-group">
+        <label class="control-label col-sm-2" for="name">Name  :</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="guideService.current.name" name="name">
+        </div>
+      </div>
+
+      <div class="form-group">
         <label class="control-label col-sm-2" for="service">Service  :</label>
         <div class="col-sm-10">
           <select class="form-control" [(ngModel)]="guideService.current.service_id" name="service">
@@ -101,7 +121,7 @@
       <div class="form-group">
         <label class="control-label col-sm-2" for="city">City  :</label>
         <div class="col-sm-10">
-          <select class="form-control" [(ngModel)]="guideService.current.city_id" name="service">
+          <select class="form-control" [(ngModel)]="guideService.current.city_id" name="city">
             <option *ngFor="let city of cityService.collections" [value]="city.id">{{city.name}}</option>
           </select>
         </div>

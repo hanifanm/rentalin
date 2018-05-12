@@ -42,6 +42,7 @@ export class GuideComponent implements OnInit {
     let oldCurrent = this.guideService.current;
     this.guideService.current = new GuideModel(
       oldCurrent.id,
+      oldCurrent.name,
       oldCurrent.service_id,
       oldCurrent.city_id,
       oldCurrent.cps,
@@ -50,12 +51,13 @@ export class GuideComponent implements OnInit {
       oldCurrent.cpd
     )
     this.isDialogForm = true;
+    console.log(this.guideService.current);
   }
 
   onCreate() {
     this.onCloseDialog();
     this.error = '';
-    this.guideService.current = new GuideModel(-1, 0, 0, 0, 0, 0, 0);
+    this.guideService.current = new GuideModel(-1, '', 0, 0, 0, 0, 0, 0);
     this.isDialogForm = true;
   }
 
@@ -85,6 +87,7 @@ export class GuideComponent implements OnInit {
     if(this.guideService.current.id === -1) {
       this.guideService.create(
         this.guideService.current.id,
+        this.guideService.current.name,
         parseInt(this.guideService.current.service_id.toString()),
         parseInt(this.guideService.current.city_id.toString()),
         this.guideService.current.cps,
@@ -95,6 +98,7 @@ export class GuideComponent implements OnInit {
     } else {
       this.guideService.update(
         this.guideService.current.id,
+        this.guideService.current.name,
         parseInt(this.guideService.current.service_id.toString()),
         parseInt(this.guideService.current.city_id.toString()),
         this.guideService.current.cps,

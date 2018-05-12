@@ -7,19 +7,22 @@
 }
 
 .car-image-box {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
     overflow: hidden;
-    height: 200px;
 }
 
 .car-image {
+    position: absolute;
+    height: 100%;
+    top: 0px; left:50%;
+    transform: translate(-50%,0);
+    -ms-transform: translate(-50%,0);
+}
+
+.price-label {
     width: 100%;
-    object-fit: cover;
-}
-
-.btn-view {
-    width : 20%;
-}
-
-.btn-rent {
-    width : 75%;
+    text-align: right;
+    font-weight: bold;
 }

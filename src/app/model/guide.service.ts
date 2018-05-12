@@ -7,6 +7,7 @@ let guides = data.guides;
 export class GuideModel {
 
   id : number;
+  name : string;
   service_id : number;
   city_id : number;
   cps : number;
@@ -14,9 +15,10 @@ export class GuideModel {
   cphd : number;
   cpd : number;
 
-  constructor(id : number, service_id : number, city_id : number,
+  constructor(id : number, name : string, service_id : number, city_id : number,
     cps : number, cphr : number, cphd : number, cpd : number) {
     this.id = id;
+    this.name = name;
     this.service_id = service_id;
     this.city_id = city_id;
     this.cps = cps;
@@ -50,7 +52,7 @@ export class GuideService {
     this.collections = [];
     for(let i=0; i<guides.length; i++) {
       if(this.loginService.user.level!==1 && service_id.indexOf(guides[i].service_id) < 0) continue;
-      let guide = new GuideModel(guides[i].id, guides[i].service_id, guides[i].city_id, guides[i].cps, guides[i].cphr, guides[i].cphd, guides[i].cpd);
+      let guide = new GuideModel(guides[i].id, guides[i].name, guides[i].service_id, guides[i].city_id, guides[i].cps, guides[i].cphr, guides[i].cphd, guides[i].cpd);
       this.collections.push(guide);
     }
   }
@@ -58,7 +60,7 @@ export class GuideService {
   fetchAll() {
     this.collections = [];
     for(let i=0; i<guides.length; i++) {
-      let guide = new GuideModel(guides[i].id, guides[i].service_id, guides[i].city_id, guides[i].cps, guides[i].cphr, guides[i].cphd, guides[i].cpd);
+      let guide = new GuideModel(guides[i].id, guides[i].name, guides[i].service_id, guides[i].city_id, guides[i].cps, guides[i].cphr, guides[i].cphd, guides[i].cpd);
       this.collections.push(guide);
     }
   }
@@ -69,10 +71,11 @@ export class GuideService {
     guides.splice(i, 1);
   }
 
-  update(id : number, service_id : number, city_id : number,
+  update(id : number, name : string, service_id : number, city_id : number,
     cps : number, cphr : number, cphd : number, cpd : number) {
     let i = 0;
     while(i<guides.length && guides[i].id !== id) i++;
+    guides[i].name = name;
     guides[i].service_id = service_id;
     guides[i].city_id = city_id;
     guides[i].cps = cps;
@@ -81,7 +84,7 @@ export class GuideService {
     guides[i].cpd = cpd;
   }
 
-  create(id : number, service_id : number, city_id : number,
+  create(id : number, name : string, service_id : number, city_id : number,
     cps : number, cphr : number, cphd : number, cpd : number) {
     
     let max = 0;
@@ -91,6 +94,7 @@ export class GuideService {
 
     let newGuide = {
       id : max + 1,
+      name : name,
       service_id : service_id,
       city_id : city_id,
       cps : cps,

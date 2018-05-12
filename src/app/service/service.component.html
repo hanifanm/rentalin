@@ -5,8 +5,8 @@
     <tr>
       <th>No</th>
       <th>Vendor</th>
-      <th>Nama Servis</th>
-      <th>Tipe</th>
+      <th>Service Name</th>
+      <th>Service Type</th>
       <th></th>
     </tr>
   </thead>
@@ -36,15 +36,18 @@
     <hr />
     <table>
       <tr>
-        <td class="list-label">Vendor Name : </td>
+        <td class="list-label">Vendor Name</td>
+        <td class="list-separator">:</td>
         <td class="list-data">{{serviceService.current.vendorName}}</td>
       </tr>
       <tr>
-        <td class="list-label">Name : </td>
+        <td class="list-label">Name</td>
+        <td class="list-separator">:</td>
         <td class="list-data">{{serviceService.current.name}}</td>
       </tr>
       <tr>
-        <td class="list-label">Service Type : </td>
+        <td class="list-label">Service Type</td>
+        <td class="list-separator">:</td>
         <td class="list-data">{{serviceService.current.serviceType}}</td>
       </tr>
     </table>
@@ -59,7 +62,7 @@
     <button type="button" class="close" (click)="onCloseDialog()">&times;</button>
     <h3>Delete Service</h3>
     <hr />
-    <p>Are you sure?</p>
+    <p>Delete this service will also delete services and guides under this. Are you sure?</p>
     <button type="button" class="btn btn-danger pull-right" (click)="onSubmitDelete()">Delete</button>
     <div class="pull-right">&nbsp;&nbsp;</div>
     <button type="button" class="btn btn-default pull-right" (click)="onCloseDialog()">Close</button>
