@@ -225,6 +225,9 @@ let car_type = [
     }
 ]
 
+// let interactions : { id : number; user_id : number; service_id : number; rsv_date : string; service_name : string; price : number;}[] = [];
+let interactions = [];
+
 let getUserById = function (id) {
     return users.filter(u => u.id === id);
 }
@@ -259,6 +262,10 @@ let getCarTypeById = function (id) {
     return car_type.filter(ct => ct.id === id);
 }
 
+let getInteractionById = function (id) {
+    return interactions.filter(i => i.id === id);
+}
+
 export {
     users,
     getUserById,
@@ -277,5 +284,8 @@ export {
     getCityById,
 
     car_type,
-    getCarTypeById
+    getCarTypeById,
+
+    interactions,
+    getInteractionById
 }

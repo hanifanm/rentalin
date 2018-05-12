@@ -32,7 +32,7 @@
         <div class="panel-heading">{{car.carType}}</div>
         <div class="panel-body">
           <div class="car-image-box">
-            <img [src]="car.image" class="car-image" />
+            <img [src]="car.image" class="car-image" (click)="onViewCar(car)"/>
           </div>
           <br />
           <div class="price-label">
@@ -40,7 +40,7 @@
               <span class="glyphicon glyphicon-tag"></span> IDR {{car.price | number}}
             </h4>
           </div>
-          <button type="button" class="btn btn-success btn-block pull-right">
+          <button type="button" class="btn btn-success btn-block pull-right" (click)="onRentCar(car)">
             Rent
           </button>
         </div>
@@ -58,6 +58,7 @@
           <th>City</th>
           <th>Per Service</th>
           <th>Per Hour</th>
+          <th>Per Half Day</th>
           <th>Per Day</th>
           <th></th>
         </tr>
@@ -70,15 +71,164 @@
           <td>{{guide.cityName}}</td>
           <td>{{guide.cps}}</td>
           <td>{{guide.cphr}}</td>
-            <td>{{guide.cpd}}</td>
-            <td>
-              <button type="button" class="btn btn-success btn-sm">
-                Rent
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+          <td>{{guide.cphd}}</td>
+          <td>{{guide.cpd}}</td>
+          <td>
+            <button type="button" class="btn btn-success btn-sm" (click)="onRentGuide(guide)">
+              Rent
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>
 
+<div class="overlay" *ngIf="isDialogCar">
+  <div class="overlay-content">
+    <button type="button" class="close" (click)="onCloseDialog()">&times;</button>
+    <h3>View Car</h3>
+    <hr />
+    <img class="list-image" height="200px" [src]="carService.current.image"/>
+    <br />
+    <table>
+      <tr>
+        <td class="list-label">Service Name</td>
+        <td class="list-separator">:</td>
+        <td class="list-data">{{carService.current.serviceName}}</td>
+      </tr>
+      <tr>
+        <td class="list-label">City</td>
+        <td class="list-separator">:</td>
+        <td class="list-data">{{carService.current.cityName}}</td>
+      </tr>
+      <tr>
+        <td class="list-label">Car Type</td>
+        <td class="list-separator">:</td>
+        <td class="list-data">{{carService.current.carType}}</td>
+      </tr>
+      <tr>
+        <td class="list-label">Price</td>
+        <td class="list-separator">:</td>
+        <td class="list-data">{{carService.current.price}}</td>
+      </tr>
+      <tr>
+        <td class="list-label">Capacity</td>
+        <td class="list-separator">:</td>
+        <td class="list-data">{{carService.current.seat}}</td>
+      </tr>
+      <tr>
+        <td class="list-label">Additional Service</td>
+        <td class="list-separator">:</td>
+        <td class="list-data">{{carService.current.additional}}</td>
+      </tr>
+    </table>
+    <button type="button" class="btn btn-default pull-right" (click)="onCloseDialog()">Close</button>
+  </div>
+</div>
+
+<div class="overlay" *ngIf="isDialogLogin">
+  <div class="overlay-content">
+    <button type="button" class="close" (click)="onCloseDialog()">&times;</button>
+    <h3>Sorry</h3>
+    <hr />
+    <p>You have to login as user to rent something</p>
+    <button type="button" class="btn btn-default pull-right" (click)="onCloseDialog()">Close</button>
+  </div>
+</div>
+
+<div class="overlay" *ngIf="isDialogRentCar">
+  <div class="overlay-content">
+    <button type="button" class="close" (click)="onCloseDialog()">&times;</button>
+    <h3>Rent Car</h3>
+    <hr />
+
+    <form class="form-horizontal">
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="carType">CarType  :</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="interactionService.current.service_name" name="carType" disabled>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="price">Price  :</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" [(ngModel)]="interactionService.current.price" name="price" disabled>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="date">Date  :</label>
+        <div class="col-sm-10">
+          <input type="date" class="form-control" [(ngModel)]="interactionService.current.rsv_date" name="date">
+        </div>
+      </div>
+
+    </form>
+
+    <div class="panel panel-danger" *ngIf="error !== ''">
+      <button type="button" class="close" (click)="onCloseError()">&times;</button>
+      <div class="panel-heading">{{error}}</div>
+    </div>
+
+    <button type="button" class="btn btn-success pull-right" (click)="onSubmitCar()">Submit</button>
+    <div class="pull-right">&nbsp;&nbsp;</div>
+    <button type="button" class="btn btn-default pull-right" (click)="onCloseDialog()">Close</button>
+  </div>
+</div>
+
+<div class="overlay" *ngIf="isDialogRentGuide">
+  <div class="overlay-content">
+    <button type="button" class="close" (click)="onCloseDialog()">&times;</button>
+    <h3>Rent Guide</h3>
+    <hr />
+
+    <form class="form-horizontal">
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="guideName">Guide  :</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="interactionService.current.service_name" name="guideName" disabled>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="guideType">Service  :</label>
+        <div class="col-sm-10">
+          <select class="form-control" [(ngModel)]="selectedRentType" name="guideType">
+            <option  value="1">Per Service</option>
+            <option  value="2">Per Hour</option>
+            <option  value="3">Per Half Day</option>
+            <option  value="4">Per Day</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="price">Price  :</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" [value]="getGuidePrice()" name="price" disabled>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="date">Date  :</label>
+        <div class="col-sm-10">
+          <input type="date" class="form-control" [(ngModel)]="interactionService.current.rsv_date" name="date">
+        </div>
+      </div>
+
+    </form>
+
+    <div class="panel panel-danger" *ngIf="error !== ''">
+      <button type="button" class="close" (click)="onCloseError()">&times;</button>
+      <div class="panel-heading">{{error}}</div>
+    </div>
+
+    <button type="button" class="btn btn-success pull-right" (click)="onSubmitGuide()">Submit</button>
+    <div class="pull-right">&nbsp;&nbsp;</div>
+    <button type="button" class="btn btn-default pull-right" (click)="onCloseDialog()">Close</button>
+  </div>
 </div>

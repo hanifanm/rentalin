@@ -11,6 +11,7 @@ import { GuideService } from './model/guide.service';
 import { LoginService } from './model/login.service';
 import { CityService } from './model/city.service';
 import { CarTypeService } from './model/car-type.service';
+import { InteractionService } from './model/interaction.service';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -45,7 +46,8 @@ import { InteractionComponent } from './interaction/interaction.component';
     GuideService,
     LoginService,
     CityService,
-    CarTypeService
+    CarTypeService,
+    InteractionService
   ],
   bootstrap: [AppComponent]
 })
