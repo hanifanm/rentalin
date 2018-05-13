@@ -140,55 +140,105 @@ let guides = [
 
 let cars = [
     {
-        id: 1,
-        service_id: 4,
-        city_id: 1,
-        car_type_id: 1,
-        price: 300000,
-        additional: 'Minum',
-        seat: 7,
-        image: 'https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/avanza.jpg?alt=media&token=8c3bf22d-288f-4918-912a-232928993028'
-    },
-    {
-        id: 2,
-        service_id: 4,
-        city_id: 2,
-        car_type_id: 3,
-        price: 300000,
-        additional: 'Termasuk Supir',
-        seat: 6,
-        image: 'https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/terios.jpg?alt=media&token=a4ccca33-b9c5-4122-9117-530e24413367'
-    },
-    {
-        id: 3,
-        service_id: 4,
-        city_id: 2,
-        car_type_id: 2,
-        price: 400000,
-        additional: 'Antar Jemput',
-        seat: 8,
-        image: 'https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/innova.jpg?alt=media&token=29554091-0680-44be-86f7-7f05f972f566'
-    },
-    {
-        id: 4,
-        service_id: 4,
-        city_id: 1,
-        car_type_id: 4,
-        price: 250000,
-        additional: '-',
-        seat: 5,
-        image: 'https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/jazz.jpg?alt=media&token=586ce2dd-3ac1-40be-b01c-4d26483cbd03'
-    },
-    {
-        id: 5,
-        service_id: 4,
-        city_id: 2,
-        car_type_id: 5,
-        price: 300000,
-        additional: '-',
-        seat: 4,
-        image: 'https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/brio.jpg?alt=media&token=c9ef0464-0002-495e-bee8-f9f50bc8a699'
-    }
+		"id": 1,
+		"service_id": 4,
+		"city_id": 1,
+		"car_type_id": 1,
+		"price": 300000,
+		"additional": "Minum",
+		"seat": 7,
+		"image": "https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/avanza.png?alt=media&token=d29353bd-0377-4da0-b427-ebd6a52e6b87"
+	},
+	{
+		"id": 3,
+		"service_id": 4,
+		"city_id": 2,
+		"car_type_id": 2,
+		"price": 400000,
+		"additional": "Antar Jemput",
+		"seat": 8,
+		"image": "https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/innova.png?alt=media&token=9744f68b-1392-4606-98f5-d62ca859dc44"
+	},
+	{
+		"id": 2,
+		"service_id": 4,
+		"city_id": 2,
+		"car_type_id": 3,
+		"price": 300000,
+		"additional": "Termasuk Supir",
+		"seat": 6,
+		"image": "https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/terios.jpg?alt=media&token=a46fcfee-35b6-4bda-a159-ffc933a10f46"
+	},
+	{
+		"id": 4,
+		"service_id": 4,
+		"city_id": 1,
+		"car_type_id": 4,
+		"price": 250000,
+		"additional": "-",
+		"seat": 5,
+		"image": "https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/jazz.png?alt=media&token=6ac11362-58f2-4051-ac32-c9663f1eb1f6"
+	},
+	{
+		"id": 5,
+		"service_id": 4,
+		"city_id": 2,
+		"car_type_id": 5,
+		"price": 300000,
+		"additional": "-",
+		"seat": 4,
+		"image": "https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/brio.png?alt=media&token=db91ac65-580b-4a47-8287-861a2b622385"
+	},
+	{
+		"id": 6,
+		"service_id": 5,
+		"city_id": 1,
+		"car_type_id": 8,
+		"price": 1000000,
+		"additional": "Termasuk Supir Professional",
+		"seat": 3,
+		"image": "https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/sedan%20bmw.jpg?alt=media&token=b041e22b-dca9-4301-9d7c-d1e4e984f7ba"
+	},
+	{
+		"id": 7,
+		"service_id": 5,
+		"city_id": 2,
+		"car_type_id": 10,
+		"price": 2000000,
+		"additional": "Bebas Parkir",
+		"seat": 5,
+		"image": "https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/alphard.jpg?alt=media&token=152410d1-af59-4192-9384-4e96baf1a1be"
+	},
+	{
+		"id": 8,
+		"service_id": 5,
+		"city_id": 1,
+		"car_type_id": 9,
+		"price": 2000000,
+		"additional": "Home Stay",
+		"seat": 7,
+		"image": "https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/limousine.jpg?alt=media&token=96b394dc-6feb-4bab-800c-e21c2435db85"
+	},
+	{
+		"id": 9,
+		"service_id": 1,
+		"city_id": 2,
+		"car_type_id": 6,
+		"price": 500000,
+		"additional": "Termasuk Supir",
+		"seat": 1,
+		"image": "https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/pick%20up.jpg?alt=media&token=6fd5aaac-7262-493b-8236-45ea5bf826fb"
+	},
+	{
+		"id": 10,
+		"service_id": 2,
+		"city_id": 1,
+		"car_type_id": 7,
+		"price": 1500000,
+		"additional": "2 Tukang Angkut",
+		"seat": 1,
+		"image": "https://firebasestorage.googleapis.com/v0/b/rentalin-hanifanm.appspot.com/o/truk.jpg?alt=media&token=cd52b0c1-ff50-4335-a98d-f758e4f1ab07"
+	}
 ]
 
 let cities = [
@@ -222,11 +272,102 @@ let car_type = [
     {
         id: 5,
         name: 'Brio'
+    },
+    {
+        id: 6,
+        name: 'Pick Up'
+    },
+    {
+        id: 7,
+        name: 'Truck'
+    },
+    {
+        id: 8,
+        name: 'Sedan BMW'
+    },
+    {
+        id: 9,
+        name: 'Limousine'
+    },
+    {
+        id: 10,
+        name: 'Alphard'
     }
 ]
 
-// let interactions : { id : number; user_id : number; service_id : number; rsv_date : string; service_name : string; price : number;}[] = [];
-let interactions = [];
+let interactions = [{
+		"id": 2,
+		"user_id": 4,
+		"service_id": 4,
+		"rsv_date": "2018-05-11",
+		"service_name": "Avanza",
+		"price": 300000,
+		"status": 4
+	},
+	{
+		"id": 3,
+		"user_id": 4,
+		"service_id": 5,
+		"rsv_date": "2018-06-15",
+		"service_name": "Limousine",
+		"price": 2000000,
+		"status": 2
+	},
+	{
+		"id": 4,
+		"user_id": 4,
+		"service_id": 5,
+		"rsv_date": "2018-05-31",
+		"service_name": "Alphard",
+		"price": 2000000,
+		"status": 1
+	},
+	{
+		"id": 5,
+		"user_id": 5,
+		"service_id": 2,
+		"rsv_date": "2018-05-18",
+		"service_name": "Truck",
+		"price": 1500000,
+		"status": 1
+	},
+	{
+		"id": 6,
+		"user_id": 5,
+		"service_id": 1,
+		"rsv_date": "2018-05-26",
+		"service_name": "Pick Up",
+		"price": 500000,
+		"status": 3
+	},
+	{
+		"id": 7,
+		"user_id": 5,
+		"service_id": 3,
+		"rsv_date": "2018-05-18",
+		"service_name": "3 Orang Tukang Angkut",
+		"price": 250000,
+		"status": 2
+	},
+	{
+		"id": 8,
+		"user_id": 4,
+		"service_id": 6,
+		"rsv_date": "2018-05-24",
+		"service_name": "Penerjemah Bahasa Inggris",
+		"price": 500000,
+		"status": 2
+	},
+	{
+		"id": 9,
+		"user_id": 4,
+		"service_id": 6,
+		"rsv_date": "2018-05-28",
+		"service_name": "Supir Professional",
+		"price": 700000,
+		"status": 3
+	}
+]
 
 let getUserById = function (id) {
     return users.filter(u => u.id === id);

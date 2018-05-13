@@ -17,7 +17,7 @@
       <td>{{interaction.service_name}}</td>
       <td>{{interaction.rsv_date}}</td>
       <td>{{interaction.price}}</td>
-      <td>{{interaction.statusName}}</td>
+      <td><span class="statusColumn" [style.color]="interaction.statusColor">{{interaction.statusName}}</span></td>
       <td>
         <button *ngIf="isCanApprove(interaction)" type="button" class="btn btn-success btn-sm" (click)="onApproveInteraction(interaction)">
           Approve

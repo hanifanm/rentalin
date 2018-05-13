@@ -1,5 +1,5 @@
 <ul class="nav nav-tabs">
-  <li *ngFor="let tab of tabs"><a [routerLink]="tab.path">{{tab.title}}</a></li>
+  <li *ngFor="let tab of tabs" [class]="isActive(tab)"><a [routerLink]="tab.path">{{tab.title}}</a></li>
 </ul>
 <div class="content">
   <router-outlet></router-outlet>

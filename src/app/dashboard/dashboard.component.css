@@ -26,3 +26,7 @@
     text-align: right;
     font-weight: bold;
 }
+
+.dialog-loading {
+    text-align: center;
+}

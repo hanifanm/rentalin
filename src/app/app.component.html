@@ -28,7 +28,23 @@
     <button type="button" class="close" (click)="onCloseDialog()">&times;</button>
     <h3>Login</h3>
     <hr />
+    
     <form class="form-horizontal">
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="selectedUser">Force Login :</label>
+        <div class="col-sm-10">
+          <div class="dropdown inline">
+            <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">
+              Select User
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li *ngFor="let user of userService.collections" (click)="selectForceLogin(user)" class="city-options">
+                <a>{{user.email + '(' + user.role + ')'}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
       <div class="form-group">
         <label class="control-label col-sm-2" for="email">Email  :</label>
         <div class="col-sm-10">
@@ -48,5 +64,13 @@
     <button type="button" class="btn btn-default pull-right" (click)="onCloseDialog()">Tutup</button>
   </div>
 </div>
+
+<div class="overlay" *ngIf="isDialogLoading">
+  <div class="overlay-content dialog-loading">
+    <img src="/assets/images/img-loading.gif" />
+    <h1>Loading...</h1>
+  </div>
+</div>
+
 <router-outlet></router-outlet>
 

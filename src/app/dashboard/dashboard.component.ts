@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CarService, CarModel } from '../model/car.service';
 import { GuideService, GuideModel } from '../model/guide.service';
 import { CityService, CityModel } from '../model/city.service';
@@ -20,6 +21,7 @@ export class DashboardComponent implements OnInit {
   isDialogRentCar : boolean = false;
   isDialogRentGuide : boolean = false;
   isDialogLogin: boolean = false;
+  isDialogLoading: boolean = false;
   error = '';
 
   constructor(
@@ -27,7 +29,8 @@ export class DashboardComponent implements OnInit {
     private guideService : GuideService,
     private cityService : CityService,
     private interactionService : InteractionService,
-    private loginService : LoginService
+    private loginService : LoginService,
+    private router : Router
   ) { }
 
   ngOnInit() {
@@ -120,9 +123,15 @@ export class DashboardComponent implements OnInit {
     )
     this.interactionService.fetch();
     this.onCloseDialog();
+    this.isDialogLoading = true;
+    setTimeout(() => {
+      this.isDialogLoading = false;
+      this.router.navigateByUrl('/app/interaction');
+    }, 500);
   }
 
-  onSubmitGuide() {this.error = '';
+  onSubmitGuide() {
+    this.error = '';
     if(this.interactionService.current.rsv_date == '') this.error = 'Date must not be empty';
     if(this.error !== '') return;
 
@@ -137,6 +146,11 @@ export class DashboardComponent implements OnInit {
     )
     this.interactionService.fetch();
     this.onCloseDialog();
+    this.isDialogLoading = true;
+    setTimeout(() => {
+      this.isDialogLoading = false;
+      this.router.navigateByUrl('/app/interaction');
+    }, 500);
   }
 
   onCloseDialog() {

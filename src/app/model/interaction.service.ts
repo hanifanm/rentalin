@@ -43,6 +43,23 @@ export class InteractionModel {
     }
   }
 
+  get statusColor() : string {
+    switch(this.status) {
+      case STATUS_APPROVED : {
+        return 'green';
+      }
+      case STATUS_REJECTED : {
+        return 'red';
+      }
+      case STATUS_PENDING : {
+        return 'black';
+      }
+      case STATUS_CANCELLED : {
+        return 'orange';
+      }
+    }
+  }
+
   get costumerName() : string {
     return data.getUserById(this.user_id)[0].name;
   }

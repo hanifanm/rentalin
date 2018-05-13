@@ -232,3 +232,10 @@
     <button type="button" class="btn btn-default pull-right" (click)="onCloseDialog()">Close</button>
   </div>
 </div>
+
+<div class="overlay" *ngIf="isDialogLoading">
+  <div class="overlay-content dialog-loading">
+    <img src="/assets/images/img-loading.gif" />
+    <h1>Loading...</h1>
+  </div>
+</div>
