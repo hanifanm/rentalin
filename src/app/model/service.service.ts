@@ -51,6 +51,18 @@ export class ServiceService {
     let i = 0;
     while(i<services.length && services[i].id !== id) i++;
     services.splice(i, 1);
+
+    i = 0;
+    while(i<data.cars.length){
+      if(data.cars[i].service_id === id) data.cars.splice(i, 1);
+      else i++;
+    }
+    
+    i = 0;
+    while(i<data.guides.length){
+      if(data.guides[i].service_id === id) data.guides.splice(i, 1);
+      else i++;
+    }
   }
 
   update(id : number, type : number, name : string) {
