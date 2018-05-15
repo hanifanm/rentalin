@@ -74,7 +74,7 @@ export class UserComponent implements OnInit {
         this.userService.current.name,
         this.userService.current.email,
         this.userService.current.password,
-        this.userService.current.level
+        parseInt(this.userService.current.level.toString())
       );
     } else {
       this.userService.update(
